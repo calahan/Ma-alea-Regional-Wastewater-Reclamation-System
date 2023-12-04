@@ -1,5 +1,5 @@
-# Calahan Laboratory Empty Project
-An project template for creating standard documents in the Calahan Laboratory. The proprietary CalahanLab R package assumes this template.
+# MRWRS Floway
+Design considerations for the Algal Turf Floway component of the Ma'alea Regional Wastewater Reclamation System  
 
 ## .gitignore
 Empty Project does not normally track revisions in the directories Drafts, References, or Visual Elements. The expectation is that items in these folders are either generated and thus ephemeral (Drafts, Visual Elements), or are aliases referring to documents stored centrally (References).
