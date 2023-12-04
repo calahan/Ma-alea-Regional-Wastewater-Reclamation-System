@@ -1,0 +1,9 @@
+rmd_files: ['PaperCoverA4.Rmd',
+            'PaperAbstract.Rmd',
+            'PaperIntroduction.Rmd',
+            'PaperMethods.Rmd',
+            'PaperResults.Rmd',
+            'PaperDiscussion.Rmd',
+            'PaperConclusion.Rmd',
+            'PaperReferences.Rmd'
+            ]

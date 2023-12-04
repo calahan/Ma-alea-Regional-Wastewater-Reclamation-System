@@ -1,0 +1,8 @@
+rmd_files: [
+  'Code/Rmd/BriefingHead.Rmd',
+  'Code/Rmd/BriefingAbstract.Rmd',
+  'Code/Rmd/BriefingIntro.Rmd',
+  'Code/Rmd/BriefingBody.Rmd',
+  'Code/Rmd/BriefingRefs.Rmd'
+  ]
+delete_merged_file: true

@@ -1,0 +1,2 @@
+library(CalahanLab)
+source(file.path('Code', 'R', 'Settings.R'))

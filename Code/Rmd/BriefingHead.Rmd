@@ -1,0 +1,16 @@
+---
+title: '`r b_title`'
+author: '`r b_author`'
+output:
+  bookdown::pdf_book:
+    toc: False
+    extra_dependencies:
+      caption: ['font=small', 'justification=justified']
+bibliography: '`r b_refs`'
+csl: '`r b_csl`'
+classoption: twocolumn
+linkcolor: blue
+geometry: 'top=13.3mm,left=13.3mm,right=13.3mm,bottom=16.6mm'
+link-citations: true
+papersize: '`r b_paper`'
+---

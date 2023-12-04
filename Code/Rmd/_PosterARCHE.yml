@@ -1,0 +1,6 @@
+rmd_files: ['PosterARCHE.Rmd',
+            'PosterTitle.Rmd'
+            'PosterAbstract.Rmd',
+            'PosterBody.Rmd',
+            'PosterReferences.Rmd'
+            ]

@@ -1,0 +1,29 @@
+\captionsetup{belowskip=-12pt,aboveskip=4pt}
+\begin{figure}[t]
+  \includegraphics{Visual Elements/Figures/1.png}
+  \caption{Caption.}
+\end{figure}
+```{r child = file.path('Working', 'Briefing', 'Body1.Rmd'), eval = TRUE, echo=FALSE}
+```
+```{r child = file.path('Working', 'Briefing', 'Body2.Rmd'), eval = TRUE, echo=FALSE}
+```
+\begin{figure}[t]
+  \includegraphics{Visual Elements/Figures/2.png}
+  \caption{Caption.}
+\end{figure}
+```{r child = file.path('Working', 'Briefing', 'Body3.Rmd'), eval = TRUE, echo=FALSE}
+```
+```{r child = file.path('Working', 'Briefing', 'Body4.Rmd'), eval = TRUE, echo=FALSE}
+```
+```{r child = file.path('Working', 'Briefing', 'Body5.Rmd'), eval = TRUE, echo=FALSE}
+```
+```{r child = file.path('Working', 'Briefing', 'Body6.Rmd'), eval = TRUE, echo=FALSE}
+```
+```{r child = file.path('Working', 'Briefing', 'Body7.Rmd'), eval = TRUE, echo=FALSE}
+```
+\vspace{10pt}
+\newenvironment{Note}{}{\par}
+\begin{Note}
+\footnotesize\centerline{Document built `r Sys.time()`}
+\vspace{10pt}
+\end{Note}

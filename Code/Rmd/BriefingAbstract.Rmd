@@ -1,0 +1,2 @@
+```{r child = file.path('Working', 'Briefing', 'Abstract.Rmd'), eval = TRUE, echo=FALSE}
+```

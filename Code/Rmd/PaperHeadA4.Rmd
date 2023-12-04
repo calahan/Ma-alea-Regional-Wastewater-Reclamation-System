@@ -1,0 +1,30 @@
+---
+title: "Title"
+author: "Author"
+output:
+  bookdown::pdf_book:
+    toc: False
+header-includes:
+    - \usepackage{setspace}\doublespacing
+linkcolor: blue
+bibliography: "References.bib"
+biblio-style: "apalike"
+link-citations: true
+---
+```{r options, include = TRUE}
+knitr::opts_knit$set(root.dir = "../../", include = TRUE, echo = FALSE)
+```
+```{r init, include = FALSE}
+source("Code/R/InitEnv.R")
+```
+\pagenumbering{gobble}
+\vspace{25mm}
+```{r cover_fig, echo=FALSE, out.width="4 in", fig.align="center"}
+#knitr::include_graphics("../../Cover.png")
+```
+\newpage
+This document was built on `r format(Sys.time(), '%d %B %Y')` using `r R.Version()$version.string` and bookdown version `r packageVersion("bookdown")`
+\newpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}  

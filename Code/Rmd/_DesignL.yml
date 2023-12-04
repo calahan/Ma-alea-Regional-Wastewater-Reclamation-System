@@ -1,0 +1,5 @@
+rmd_files: ['BookHeadL.Rmd',
+            'BookFrontMatter.Rmd',
+            'BookBodyMatter.Rmd',
+            'BookBackMatter.Rmd'
+            ]

@@ -1,0 +1,6 @@
+rmd_files: ['PosterA0.Rmd',
+            'PosterTitle.Rmd'
+            'PosterAbstract.Rmd',
+            'PosterBody.Rmd',
+            'PosterReferences.Rmd'
+            ]
