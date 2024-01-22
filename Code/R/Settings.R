@@ -1,19 +1,50 @@
 # The R package CalahanLab is loaded in .Rprofile
 
 #  
-# Briefing Settings
+# Briefing Metadata
 #
 
-b_title <- 'BriefingTitle'
-b_units <- 'US'
-b_paper <- 'letter'
-b_csl   <- file.path('Code', 'Rmd', '_Briefing.csl')
-b_refs  <- file.path('Code', 'Rmd', '_References.bib')
+{
+  b_title <- "MRWRS Algal Turf Floway"
+  b_units <- 'US'
+  b_paper <- 'letter'
+  b_csl   <- file.path('Code', 'Rmd', '_Briefing.csl')
+  b_refs  <- file.path('Code', 'Rmd', '_References.bib')
+  
+  authors <- list(
+    c('Dean Calahan, Ph.D.', 'deanc@fykor.com'),
+    c('Travis Liggett, M.S.', 'travis@reefpowermaui.com')
+  )
+  
+  #
+  # Briefing Variables
+  #
+  res_vol <- 3785             # reservoir volume: 1 million gal in m3
+  fw_area <- 1214             # floway area: 0.3 ac in m2
+  fw_wid  <- 30               # floway width: 30 m
+  fw_len  <- fw_area/fw_wid   # compute floway length in m
+  fw_lhlr <- 0.002            # m^3 s-1 m-1
+  
+  #
+  # Handle units
+  #
+  install_unit('m^3 s**-1 m**-1', 'm^3/s/m')
+  install_unit('gallon min**-1 ft**-1', 'gallon/min/ft')
+}
 
-authors <- list(
-  c('First Author', 'First Author Affiliation'),
-  c('Second Author', 'Second Author Affiliation')
-)
+{
+  units(res_vol)  <- 'm^2'
+  units(fw_area)  <- 'm^2'
+  units(fw_wid)   <- 'm'
+  units(fw_len)   <- 'm'
+  units(fw_lhlr)  <- 'm^3/s/m'
+  #units(fw_lhlr)  <- 'm3 s-1 m-1'
+}
+
+  remove_unit('m^3 s**-1 m**-1')
+  remove_unit('gal min**-1 ft**-1')
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 b_author = paste0(
   '\n',
