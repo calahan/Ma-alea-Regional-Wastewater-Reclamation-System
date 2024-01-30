@@ -3,32 +3,60 @@
 #
 # Site Settings
 #
-s_lat        <- 20.809336
-s_lon        <- -156.490729
-s_vol        <- 1000000
-units(s_vol) <- 'gallon'
+# From the plan: 6.46 cm = 80ft: 1 cm = 12.3839 ft, wid = 3.4 cm = 42 ft
+# len = 24.2 cm = 300 ft
+# fw_wid        <- 42
+# fw_len        <- 300
+# flow          <- 224843
+# units(fw_wid) <- 'ft'
+# units(fw_len) <- 'ft'
+# units(fw_wid) <- 'm'
+# units(fw_len) <- 'm'
+# units(flow)   <- 'gallon/d'
 
-# Total nutrients
-P_conc        <- 5
-units(P_conc) <- 'mg/L'
-units(P_conc) <- 'g/m^3'
+{
+  # Assign values in SI for calculating
+  s_lat         <- 20.809336
+  s_lon         <- -156.490729
+  s_vol         <- 3785412
+  units(s_vol)  <- 'liter'
+  fw_wid        <- 12.8016
+  units(fw_wid) <- 'm'
+  fw_len        <- 91.44
+  units(fw_len) <- 'm'
+  flow          <- 851123.4
+  units(flow)   <- 'liter/d'
+  lhlr          <- 120
+  units(lhlr)   <- 'liter/min/m'
 
-N_conc        <- 5
-units(N_conc) <- 'mg/L'
-units(N_conc) <- 'g/m^3'
-
-P_tot         <- P_conc * s_vol
-units(P_tot)  <- 'kg'
-
-N_tot         <- N_conc * s_vol
-units(N_tot)  <- 'kg'
-
-# Convert to US units
-units(s_area)    <- 'acre'
-units(s_maxdep)  <- 'ft'
-units(s_meandep) <- 'ft'
-units(s_vol)     <- 'yard^3'
-
+  fw_area       <- fw_wid * fw_len
+  hlr           <- fw_wid * lhlr
+  
+  # Total nutrients
+  P_conc        <- 5
+  units(P_conc) <- 'mg/L'
+  units(P_conc) <- 'g/m^3'
+  
+  N_conc        <- 5
+  units(N_conc) <- 'mg/L'
+  units(N_conc) <- 'g/m^3'
+  
+  P_tot         <- P_conc * s_vol
+  units(P_tot)  <- 'kg'
+  
+  N_tot         <- N_conc * s_vol
+  units(N_tot)  <- 'kg'
+  
+  prod          <- 10
+  units(prod)   <- 'g/m2/d'
+  # Convert to US units for display
+  units(s_vol)   <- 'gallon'
+  units(fw_area) <- 'acre'
+  units(fw_wid)  <- 'ft'
+  units(fw_len)  <- 'ft'
+  units(lhlr)    <- 'gallon/min/ft'
+  
+}
 #
 # Productivity
 #
