@@ -44,8 +44,12 @@
   units(lhlr)   <- 'liter/min/m'
   
   # Derive useful values
-  hlr           <- fw_wid * lhlr
-  turnover      <- hlr/flow
+  hlr             <- fw_wid * lhlr
+  flow_to         <- hlr/flow
+  flow_to         <- drop_units(flow_to)
+  units(flow_to)  <- 'd-1'
+  pond_to         <- hlr / s_vol
+  units(pond_to)  <- 'd-1'
 
   fw_area       <- fw_wid * fw_len
   hlr           <- fw_wid * lhlr
@@ -59,15 +63,28 @@
   units(N_conc) <- 'mg/L'
   units(N_conc) <- 'g/m^3'
   
-  P_tot         <- P_conc * s_vol
+  P_in         <- P_conc * s_vol
   units(P_tot)  <- 'kg'
   
   N_tot         <- N_conc * s_vol
   units(N_tot)  <- 'kg'
   
-  prod          <- 10
-  units(prod)   <- 'g/m2/d'
-  
+  prod         <- 10
+  units(prod)  <- 'g/d/m2'
+  bm_N_prop    <- 0.05
+  bm_P_prop    <- 0.003
+  seven        <- 7
+  units(seven) <- 'd'
+  w_afdw       <- seven * fw_area * prod
+  w_Nrem       <- bm_N_prop * w_afdw
+  w_Prem       <- bm_P_prop * w_afdw
+  Nin          <- N_conc * flow
+  Pin          <- P_conc * flow
+  w_Nin        <- seven * Nin
+  w_Pin        <- seven * Pin
+}
+
+{
   # Convert to US units for display
   units(s_vol)   <- 'gallon'
   units(fw_area) <- 'acre'
@@ -76,28 +93,25 @@
   units(lhlr)    <- 'gallon/min/ft'
   units(flow)    <- 'gallon/d'
   units(hlr)     <- 'gallon/d'
+  units(w_afdw)  <- 'lb'
+  units(w_Nin)   <- 'lb'
+  units(w_Pin)   <- 'lb'
+  units(w_Nrem)  <- 'lb'
+  units(w_Prem)  <- 'lb'
+} 
+
+{
+  #
+  # Productivity
+  #
+  p_lhlr <- 120
+  units(p_lhlr) <- 'L/min/m'
+  units(p_lhlr) <- 'gallon/min/ft'
   
+  p_afdw <- 10
+  units(p_afdw) <- 'g/m^2/d'
+  units(p_afdw) <- 'ton/acre/year'
 }
-#
-# Productivity
-#
-p_lhlr <- 120
-units(p_lhlr) <- 'L/min/m'
-units(p_lhlr) <- 'gallon/min/ft'
-
-p_afdw <- 10
-units(p_afdw) <- 'g/m^2/d'
-units(p_afdw) <- 'ton/acre/year'
-
-#
-# Floway dimensions, turnover
-#
-fw_wid         <- c(10, 20, 30)
-units(fw_wid)  <- 'm'
-fw_len         <- c(30, 60, 90)
-units(fw_len)  <- 'm'
-fw_lhlr        <- c(120, 90, 60)
-units(fw_lhlr) <- 'L/min/m'
 
 # Convert to US units
 units(fw_wid)  <- 'ft'
