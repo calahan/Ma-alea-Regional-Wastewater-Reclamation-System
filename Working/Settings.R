@@ -15,9 +15,23 @@
 # units(flow)   <- 'gallon/d'
 
 {
-  # Assign values in SI for calculating
+  # Metadata
+  b_title <- "MRWRS Algal Turf Floway"
+  b_units <- 'US'
+  b_paper <- 'letter'
+  b_csl   <- file.path('Code', 'Rmd', '_Briefing.csl')
+  b_refs  <- file.path('Code', 'Rmd', '_References.bib')
+  
+  authors <- list(
+    c('Dean Calahan, Ph.D.', 'deanc@fykor.com'),
+    c('Travis Liggett, M.S.', 'travis@reefpowermaui.com')
+  )
+
+  # Location
   s_lat         <- 20.809336
   s_lon         <- -156.490729
+  
+  # Assign values in SI for calculating
   s_vol         <- 3785412
   units(s_vol)  <- 'liter'
   fw_wid        <- 12.8016
@@ -28,6 +42,10 @@
   units(flow)   <- 'liter/d'
   lhlr          <- 120
   units(lhlr)   <- 'liter/min/m'
+  
+  # Derive useful values
+  hlr           <- fw_wid * lhlr
+  turnover      <- hlr/flow
 
   fw_area       <- fw_wid * fw_len
   hlr           <- fw_wid * lhlr
@@ -49,12 +67,15 @@
   
   prod          <- 10
   units(prod)   <- 'g/m2/d'
+  
   # Convert to US units for display
   units(s_vol)   <- 'gallon'
   units(fw_area) <- 'acre'
   units(fw_wid)  <- 'ft'
   units(fw_len)  <- 'ft'
   units(lhlr)    <- 'gallon/min/ft'
+  units(flow)    <- 'gallon/d'
+  units(hlr)     <- 'gallon/d'
   
 }
 #
@@ -88,24 +109,6 @@ ex_hl        <- fw_wid[[1]] * fw_lhlr[[1]]
 units(ex_hl) <- 'yard^3/min'
 ex_to        <- s_vol / ex_hl
 units(ex_to) <- 'day'
-
-# [todo] Get this into CalahanLab
-FmtQuant <- function(val, sig) {
-  lu <- list(
-    'acre'          = 'ac',
-    'ft'            = 'ft',
-    'yard3'         = 'yd^3^',
-    'ton/acre/year' = 't ac^-1^ yr^-1^',
-    'gallon min-1'    = 'gal min^-1^'
-  )
-  
-  f <- sprintf(paste0('%.', sig, 'e'), val)
-  e <- drop_units(floor(log(val, 10)))
-  n <- as.numeric(sub('(.+)e.+', '\\1', f)) * 10^e
-  u <- deparse_unit(val)
-  
-  paste0(format(n, big.mark = ',', scientific = FALSE), ' ', lu[[u]])
-}
 
 #  
 # Briefing Settings
