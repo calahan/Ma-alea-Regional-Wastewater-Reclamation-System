@@ -81,11 +81,11 @@
     area    <- wid * len
     hlr     <- wid * lhlr
     prod_d  <- prod * area * one_day
-    prod_w  <- seven * prod_d
+    prod_w  <- 7 * prod_d
     Nrem_d  <- N_pr * prod_d
     Prem_d  <- P_pr * prod_d
-    Nrem_w  <- seven * Nrem_d
-    Prem_w  <- seven * Prem_d
+    Nrem_w  <- 7 * Nrem_d
+    Prem_w  <- 7 * Prem_d
     N_d     <- vol_d * N_c
     P_d     <- vol_d * P_c
     N_w     <- seven * N_d
@@ -93,6 +93,12 @@
     
     # The following forces simplification (see stackoverflow etc.?)
     units(prod_d) <- 'kg'
+    units(prod_w) <- 'kg'
+    units(Nrem_d) <- 'kg'
+    units(Prem_d) <- 'kg'
+    units(Nrem_w) <- 'kg'
+    units(Prem_w) <- 'kg'
+    
     #units(prod_w) <- 'kg/week'
     #units(Nrem_d) <- 
     vol_to         <- hlr / vol_d
