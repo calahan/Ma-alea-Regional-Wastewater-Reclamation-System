@@ -43,17 +43,6 @@
   lhlr          <- 120
   units(lhlr)   <- 'liter/min/m'
   
-  # Derive useful values
-  hlr             <- fw_wid * lhlr
-  flow_to         <- hlr/flow
-  flow_to         <- drop_units(flow_to)
-  units(flow_to)  <- 'd-1'
-  pond_to         <- hlr / s_vol
-  units(pond_to)  <- 'd-1'
-
-  fw_area       <- fw_wid * fw_len
-  hlr           <- fw_wid * lhlr
-  
   # Total nutrients
   P_conc        <- 5
   units(P_conc) <- 'mg/L'
@@ -63,27 +52,86 @@
   units(N_conc) <- 'mg/L'
   units(N_conc) <- 'g/m^3'
   
-  P_in         <- P_conc * s_vol
-  units(P_tot)  <- 'kg'
+  #P_in         <- P_conc * s_vol
+  #units(P_tot)  <- 'kg'
   
-  N_tot         <- N_conc * s_vol
-  units(N_tot)  <- 'kg'
+  # N_tot         <- N_conc * s_vol
+  # units(N_tot)  <- 'kg'
   
   prod         <- 10
   units(prod)  <- 'g/d/m2'
   bm_N_prop    <- 0.05
   bm_P_prop    <- 0.003
-  seven        <- 7
-  units(seven) <- 'd'
-  w_afdw       <- seven * fw_area * prod
-  w_Nrem       <- bm_N_prop * w_afdw
-  w_Prem       <- bm_P_prop * w_afdw
-  Nin          <- N_conc * flow
-  Pin          <- P_conc * flow
-  w_Nin        <- seven * Nin
-  w_Pin        <- seven * Pin
+
+  #' Calculate useful production values \code{FlowayProduction} returns a named
+  #' list containing useful values that might be needed when designing an ATS
+  #' @param wid,len floway width and length
+  #' @param lhlr linear hydraulic loading rate
+  #' @param prod_d daily productivity
+  #' @param N_pr,P_pr biomass N and P proportion
+  #' @param vol_res volume of reservoir
+  #' @param vol_d daily volume of influent
+  FlowayProduction <-
+    function(wid, len, lhlr, prod, N_pr, P_pr, N_c, P_c, vol_res, vol_d) {
+    seven          <- 7
+    units(seven)   <- 'd'
+    one_day        <- 1
+    units(one_day) <- 'd'
+    
+    area    <- wid * len
+    hlr     <- wid * lhlr
+    prod_d  <- prod * area * one_day
+    prod_w  <- seven * prod_d
+    Nrem_d  <- N_pr * prod_d
+    Prem_d  <- P_pr * prod_d
+    Nrem_w  <- seven * Nrem_d
+    Prem_w  <- seven * Prem_d
+    N_d     <- vol_d * N_c
+    P_d     <- vol_d * P_c
+    N_w     <- seven * N_d
+    P_w     <- seven * P_d
+    
+    # The following forces simplification (see stackoverflow etc.?)
+    units(prod_d) <- 'kg'
+    #units(prod_w) <- 'kg/week'
+    #units(Nrem_d) <- 
+    vol_to         <- hlr / vol_d
+    vol_to         <- drop_units(vol_to) 
+    units(vol_to) <- 'd-1'
+    
+    res_to         <- hlr / vol_res
+    res_to         <- drop_units(res_to)
+    units(res_to) <- 'd-1'    
+    
+    list(
+      area    = area,
+      hlr     = hlr,
+      prod_d  = prod_d,
+      prod_w  = prod_w,
+      Nrem_d  = Nrem_d,
+      Prem_d  = Prem_d,
+      Nrem_w  = Nrem_w,
+      Prem_w  = Prem_w,
+      N_d     = N_d,
+      P_d     = P_d,
+      N_wk    = seven * N_d,
+      P_wk    = seven * P_d
+    )
+  }
+  prod_nums <- FlowayProduction(
+    fw_wid, fw_len, lhlr, prod, bm_N_prop, bm_P_prop, N_conc, P_conc, s_vol, flow)
+  # seven        <- 7
+  # units(seven) <- 'd'
+  # w_afdw       <- seven * fw_area * prod
+  # w_Nrem       <- bm_N_prop * w_afdw
+  # w_Prem       <- bm_P_prop * w_afdw
+  # Nin          <- N_conc * flow
+  # Pin          <- P_conc * flow
+  # w_Nin        <- seven * Nin
+  # w_Pin        <- seven * Pin
 }
 
+if(FALSE)
 {
   # Convert to US units for display
   units(s_vol)   <- 'gallon'
@@ -114,15 +162,15 @@
 }
 
 # Convert to US units
-units(fw_wid)  <- 'ft'
-units(fw_len)  <- 'ft'
-units(fw_lhlr) <- 'gallon/min/ft'
+# units(fw_wid)  <- 'ft'
+# units(fw_len)  <- 'ft'
+# units(fw_lhlr) <- 'gallon/min/ft'
 
 # Turnover time
-ex_hl        <- fw_wid[[1]] * fw_lhlr[[1]]
-units(ex_hl) <- 'yard^3/min'
-ex_to        <- s_vol / ex_hl
-units(ex_to) <- 'day'
+# ex_hl        <- fw_wid[[1]] * fw_lhlr[[1]]
+# units(ex_hl) <- 'yard^3/min'
+# ex_to        <- s_vol / ex_hl
+# units(ex_to) <- 'day'
 
 #  
 # Briefing Settings
