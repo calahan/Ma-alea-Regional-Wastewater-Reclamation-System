@@ -1,19 +1,5 @@
 # The R package CalahanLab is loaded in .Rprofile
 
-#
-# Site Settings
-#
-# From the plan: 6.46 cm = 80ft: 1 cm = 12.3839 ft, wid = 3.4 cm = 42 ft
-# len = 24.2 cm = 300 ft
-# fw_wid        <- 42
-# fw_len        <- 300
-# flow          <- 224843
-# units(fw_wid) <- 'ft'
-# units(fw_len) <- 'ft'
-# units(fw_wid) <- 'm'
-# units(fw_len) <- 'm'
-# units(flow)   <- 'gallon/d'
-
 {
   # Metadata
   b_title <- "MRWRS Algal Turf Floway"
@@ -32,85 +18,53 @@
   s_lon         <- -156.490729
   
   # Assign values in SI for calculating
-  s_vol         <- 3785412
-  units(s_vol)  <- 'liter'
-  fw_wid        <- 12.8016
-  units(fw_wid) <- 'm'
-  fw_len        <- 91.44
-  units(fw_len) <- 'm'
-  flow          <- 851123.4
-  units(flow)   <- 'liter/d'
-  lhlr          <- 120
-  units(lhlr)   <- 'liter/min/m'
-  
-  # Total nutrients
-  P_conc        <- 5
-  units(P_conc) <- 'mg/L'
-  units(P_conc) <- 'g/m^3'
-  
-  N_conc        <- 5
-  units(N_conc) <- 'mg/L'
-  units(N_conc) <- 'g/m^3'
-  
-  #P_in         <- P_conc * s_vol
-  #units(P_tot)  <- 'kg'
-  
-  # N_tot         <- N_conc * s_vol
-  # units(N_tot)  <- 'kg'
-  
-  prod         <- 10
-  units(prod)  <- 'g/d/m2'
-  bm_N_prop    <- 0.05
-  bm_P_prop    <- 0.003
+  vol_res  <- 3785412
+  vol_inf <-  851123.4
+  fw_wid   <-      12.8016
+  fw_len   <-      91.44
+  lhlr     <-     120
+  P_conc   <-       5
+  N_conc   <-       1
+  fw_prod  <-      10
 
-  prod_nums <- FlowayProduction(
-    fw_wid, fw_len, lhlr, prod, bm_N_prop, bm_P_prop, N_conc, P_conc, s_vol, flow)
+  units(vol_res)  <- 'liter'
+  units(fw_wid)   <- 'm'
+  units(fw_len)   <- 'm'
+  units(vol_inf) <- 'liter/d'
+  units(lhlr)     <- 'liter/min/m'
+  units(P_conc)   <- 'mg/L'
+  units(P_conc)   <- 'g/m^3'
+  units(N_conc)   <- 'mg/L'
+  units(N_conc)   <- 'g/m^3'
+  units(fw_prod)     <- 'g/d/m2'
+  
+  bm_N_prop <- 0.05
+  bm_P_prop <- 0.003
+
+  fwp <- FlowayProduction(
+    fw_wid, fw_len, lhlr, fw_prod, bm_N_prop, bm_P_prop, N_conc, P_conc, vol_res,
+    vol_inf)
 }
 
-if(FALSE)
 {
   # Convert to US units for display
-  units(s_vol)   <- 'gallon'
-  units(fw_area) <- 'acre'
   units(fw_wid)  <- 'ft'
   units(fw_len)  <- 'ft'
-  units(lhlr)    <- 'gallon/min/ft'
-  units(flow)    <- 'gallon/d'
-  units(hlr)     <- 'gallon/d'
-  units(w_afdw)  <- 'lb'
-  units(w_Nin)   <- 'lb'
-  units(w_Pin)   <- 'lb'
-  units(w_Nrem)  <- 'lb'
-  units(w_Prem)  <- 'lb'
+  units(vol_inf)  <- 'gallon/d'
+  units(vol_res) <- 'gallon'
+  
+  units(fwp$area)   <- 'acre'
+  units(fwp$hlr)    <- 'gallon/d'
+  units(fwp$prod_d) <- 'lb'
+  units(fwp$prod_w) <- 'lb'
+  units(fwp$Nrem_d) <- 'lb'
+  units(fwp$Prem_d) <- 'lb'
+  units(fwp$N_d)    <- 'lb'
+  units(fwp$P_d)    <- 'lb'
+  units(fwp$N_w)    <- 'lb'
+  units(fwp$P_w)    <- 'lb'
 } 
 
-{
-  #
-  # Productivity
-  #
-  p_lhlr <- 120
-  units(p_lhlr) <- 'L/min/m'
-  units(p_lhlr) <- 'gallon/min/ft'
-  
-  p_afdw <- 10
-  units(p_afdw) <- 'g/m^2/d'
-  units(p_afdw) <- 'ton/acre/year'
-}
-
-# Convert to US units
-# units(fw_wid)  <- 'ft'
-# units(fw_len)  <- 'ft'
-# units(fw_lhlr) <- 'gallon/min/ft'
-
-# Turnover time
-# ex_hl        <- fw_wid[[1]] * fw_lhlr[[1]]
-# units(ex_hl) <- 'yard^3/min'
-# ex_to        <- s_vol / ex_hl
-# units(ex_to) <- 'day'
-
-#  
-# Briefing Settings
-#
 b_title   <- 'Maalea Regional Wastewater Reclamation System'
 b_units   <- 'US'
 b_paper   <- 'letter'
