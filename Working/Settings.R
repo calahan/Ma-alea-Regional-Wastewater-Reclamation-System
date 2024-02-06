@@ -18,19 +18,19 @@
   s_lon         <- -156.490729
   
   # Assign values in SI for calculating
-  vol_res  <- 3785412
-  vol_inf <-  851123.4
-  fw_wid   <-      12.8016
-  fw_len   <-      91.44
-  lhlr     <-     120
-  P_conc   <-       5
-  N_conc   <-       1
-  fw_prod  <-      10
+  vol_res <- 3785412
+  vol_inf <- 851123.4
+  fw_wid  <- 12.8016
+  fw_len  <- 91.44
+  lhlr    <- 120
+  P_conc  <- 5
+  N_conc  <- 1
+  fw_prod <- 10
 
   units(vol_res) <- 'liter'
+  units(vol_inf) <- 'liter'
   units(fw_wid)  <- 'm'
   units(fw_len)  <- 'm'
-  units(vol_inf) <- 'liter/d'
   units(lhlr)    <- 'liter/min/m'
   units(P_conc)  <- 'mg/L'
   units(P_conc)  <- 'g/m^3'
@@ -50,7 +50,7 @@
   # Convert to US units for display
   units(fw_wid)  <- 'ft'
   units(fw_len)  <- 'ft'
-  units(vol_inf) <- 'gallon/d'
+  units(vol_inf) <- 'gallon'
   units(vol_res) <- 'gallon'
   units(lhlr)    <- 'gallon/ft/min'
   
