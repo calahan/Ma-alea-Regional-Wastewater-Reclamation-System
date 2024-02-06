@@ -27,16 +27,16 @@
   N_conc   <-       1
   fw_prod  <-      10
 
-  units(vol_res)  <- 'liter'
-  units(fw_wid)   <- 'm'
-  units(fw_len)   <- 'm'
+  units(vol_res) <- 'liter'
+  units(fw_wid)  <- 'm'
+  units(fw_len)  <- 'm'
   units(vol_inf) <- 'liter/d'
-  units(lhlr)     <- 'liter/min/m'
-  units(P_conc)   <- 'mg/L'
-  units(P_conc)   <- 'g/m^3'
-  units(N_conc)   <- 'mg/L'
-  units(N_conc)   <- 'g/m^3'
-  units(fw_prod)     <- 'g/d/m2'
+  units(lhlr)    <- 'liter/min/m'
+  units(P_conc)  <- 'mg/L'
+  units(P_conc)  <- 'g/m^3'
+  units(N_conc)  <- 'mg/L'
+  units(N_conc)  <- 'g/m^3'
+  units(fw_prod) <- 'g/d/m2'
   
   bm_N_prop <- 0.05
   bm_P_prop <- 0.003
@@ -50,8 +50,9 @@
   # Convert to US units for display
   units(fw_wid)  <- 'ft'
   units(fw_len)  <- 'ft'
-  units(vol_inf)  <- 'gallon/d'
+  units(vol_inf) <- 'gallon/d'
   units(vol_res) <- 'gallon'
+  units(lhlr)    <- 'gallon/ft/min'
   
   units(fwp$area)   <- 'acre'
   units(fwp$hlr)    <- 'gallon/d'
