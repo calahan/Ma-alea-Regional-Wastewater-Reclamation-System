@@ -14,37 +14,37 @@
   )
 
   # Location
-  s_lat         <- 20.809336
-  s_lon         <- -156.490729
+  s_lat <- 20.809336
+  s_lon <- -156.490729
   
   # Assign values in SI for calculating
-  vol_res <- 3785412
-  vol_inf <- 851123.4
-  fw_wid  <- 12.8016
-  fw_len  <- 91.44
-  lhlr    <- 120
-  P_conc  <- 5
-  N_conc  <- 1
+  ash     <- 0.2
   bm_N    <- 0.05
   bm_P    <- 0.003
+  fw_len  <- 91.44
   fw_prod <- 10
-  ash     <- 0.2
+  fw_wid  <- 12.8016
+  lhlr    <- 120
+  N_conc  <- 1
+  P_conc  <- 5
   solids  <- 0.1
+  vol_res <- 3785412
+  vol_inf <- 851123.4
 
-  units(fw_wid)  <- 'm'
-  units(fw_len)  <- 'm'
-  units(lhlr)    <- 'liter/min/m'
-  units(fw_prod) <- 'g/d/m2'
+  units(ash)     <- '1'
   units(bm_N)    <- '1'
   units(bm_P)    <- '1'
+  units(fw_len)  <- 'm'
+  units(fw_prod) <- 'g/d/m2'
+  units(fw_wid)  <- 'm'
+  units(lhlr)    <- 'liter/min/m'
   units(N_conc)  <- 'mg/L'
   units(N_conc)  <- 'g/m^3'
   units(P_conc)  <- 'mg/L'
   units(P_conc)  <- 'g/m^3'
-  units(vol_res) <- 'liter'
-  units(vol_inf) <- 'liter'
-  units(ash)     <- '1'
   units(solids)  <- '1'
+  units(vol_inf) <- 'liter'
+  units(vol_res) <- 'liter'
   
   fwp <- FlowayProduction(
     fw_wid, fw_len, lhlr, fw_prod, bm_N, bm_P, N_conc, P_conc, vol_res, vol_inf,
@@ -58,19 +58,20 @@
   units(vol_inf) <- 'gallon'
   units(vol_res) <- 'gallon'
   units(lhlr)    <- 'gallon/ft/min'
+  units(solids)  <- '%'
   
-  units(fwp$area)   <- 'acre'
-  units(fwp$hlr)    <- 'gallon/d'
-  units(fwp$prod_d) <- 'lb'
-  units(fwp$prod_w) <- 'lb'
-  units(fwp$Nrem_d) <- 'lb'
-  units(fwp$Prem_d) <- 'lb'
-  units(fwp$Nrem_w) <- 'lb'
-  units(fwp$Prem_w) <- 'lb'
-  units(fwp$N_d)    <- 'lb'
-  units(fwp$P_d)    <- 'lb'
-  units(fwp$N_w)    <- 'lb'
-  units(fwp$P_w)    <- 'lb'
+  units(fwp$area)    <- 'acre'
+  units(fwp$hlr)     <- 'gallon/d'
+  units(fwp$prod_d)  <- 'lb'
+  units(fwp$prod_w)  <- 'lb'
+  units(fwp$Nrem_d)  <- 'lb'
+  units(fwp$Prem_d)  <- 'lb'
+  units(fwp$Nrem_w)  <- 'lb'
+  units(fwp$Prem_w)  <- 'lb'
+  units(fwp$N_d)     <- 'lb'
+  units(fwp$P_d)     <- 'lb'
+  units(fwp$N_w)     <- 'lb'
+  units(fwp$P_w)     <- 'lb'
   units(fwp$gprod_d) <- 'lb'
   units(fwp$gprod_w) <- 'lb'
 } 
