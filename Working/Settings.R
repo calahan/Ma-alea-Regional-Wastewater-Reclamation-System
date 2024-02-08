@@ -25,25 +25,30 @@
   lhlr    <- 120
   P_conc  <- 5
   N_conc  <- 1
+  bm_N    <- 0.05
+  bm_P    <- 0.003
   fw_prod <- 10
+  ash     <- 0.2
+  solids  <- 0.1
 
-  units(vol_res) <- 'liter'
-  units(vol_inf) <- 'liter'
   units(fw_wid)  <- 'm'
   units(fw_len)  <- 'm'
   units(lhlr)    <- 'liter/min/m'
-  units(P_conc)  <- 'mg/L'
-  units(P_conc)  <- 'g/m^3'
+  units(fw_prod) <- 'g/d/m2'
+  units(bm_N)    <- '1'
+  units(bm_P)    <- '1'
   units(N_conc)  <- 'mg/L'
   units(N_conc)  <- 'g/m^3'
-  units(fw_prod) <- 'g/d/m2'
+  units(P_conc)  <- 'mg/L'
+  units(P_conc)  <- 'g/m^3'
+  units(vol_res) <- 'liter'
+  units(vol_inf) <- 'liter'
+  units(ash)     <- '1'
+  units(solids)  <- '1'
   
-  bm_N_prop <- 0.05
-  bm_P_prop <- 0.003
-
   fwp <- FlowayProduction(
-    fw_wid, fw_len, lhlr, fw_prod, bm_N_prop, bm_P_prop, N_conc, P_conc, vol_res,
-    vol_inf)
+    fw_wid, fw_len, lhlr, fw_prod, bm_N, bm_P, N_conc, P_conc, vol_res, vol_inf,
+    ash, solids)
 }
 
 {
@@ -60,10 +65,14 @@
   units(fwp$prod_w) <- 'lb'
   units(fwp$Nrem_d) <- 'lb'
   units(fwp$Prem_d) <- 'lb'
+  units(fwp$Nrem_w) <- 'lb'
+  units(fwp$Prem_w) <- 'lb'
   units(fwp$N_d)    <- 'lb'
   units(fwp$P_d)    <- 'lb'
   units(fwp$N_w)    <- 'lb'
   units(fwp$P_w)    <- 'lb'
+  units(fwp$gprod_d) <- 'lb'
+  units(fwp$gprod_w) <- 'lb'
 } 
 
 b_title   <- 'Maalea Regional Wastewater Reclamation System'
